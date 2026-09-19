@@ -1,0 +1,247 @@
+:root {
+  --color1: #ffffff;
+  --color2: #C1E8E8;
+  --color-text: #1A5037;
+  --color-white: #FFFFFF;
+  --color-btn: #1B6B60;
+  --color-btn-hover: #D9A05B;
+  --color-error: #D9534F;
+  --color-success: #5CB85C;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--color1);
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background-color: var(--color2);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-text);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.btn-link {
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 5px;
+  border: 1px solid var(--color-text);
+  transition: background 0.3s;
+}
+
+.btn-link:hover {
+  background-color: var(--color1);
+}
+
+.profile-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+}
+
+.profile-card {
+  background-color: var(--color2);
+  width: 100%;
+  max-width: 750px;
+  padding: 35px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.profile-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.alert {
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.alert-danger {
+  background-color: #F8D7DA;
+  color: #721C24;
+  border: 1px solid #F5C6CB;
+}
+
+.alert-success {
+  background-color: #D4EDDA;
+  color: #155724;
+  border: 1px solid #C3E6CB;
+}
+
+/* Bloque de Avatar e Información Meta */
+.avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 25px;
+  gap: 12px;
+}
+
+.avatar-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--color-btn);
+  background-color: #FFF;
+}
+
+.meta-info {
+  background-color: var(--color1);
+  padding: 12px 20px;
+  border-radius: 8px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 0.85rem;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+
+/* Form Grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.form-group {
+  margin-bottom: 5px;
+}
+
+.form-group.full-width {
+  grid-column: span 2;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-group i {
+  position: absolute;
+  left: 12px;
+  color: #666;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px 12px 10px 38px;
+  border: 1px solid #CCC;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+  background-color: var(--color1);
+  color: var(--color-text);
+}
+
+
+
+.btn-submit {
+  grid-column: span 2;
+  width: 100%;
+  padding: 12px;
+  background-color: var(--color-btn);
+  color: var(--color-white);
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 15px;
+}
+
+.btn-submit:hover {
+  background-color: var(--color-btn-hover);
+}
+
+.js-error {
+  color: #8B0000;
+  font-size: 0.8rem;
+  margin-top: 4px;
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group.full-width,
+  .btn-submit {
+    grid-column: span 1;
+  }
+}
+
+footer {
+  background-color: var(--color2);
+  text-align: center;
+  padding: 15px;
+  margin-top: auto;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}

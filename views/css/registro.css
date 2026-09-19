@@ -1,0 +1,238 @@
+:root {
+  --color1: #ffffff;
+  --color2: #C1E8E8;
+  --color-text: #1A5037;
+  --color-white: #FFFFFF;
+  --color-btn: #1B6B60;
+  --color-btn-hover: #D9A05B;
+  --color-error: #D9534F;
+  --color-success: #5CB85C;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--color1);
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background-color: var(--color2);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-text);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-link {
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 5px;
+  border: 1px solid var(--color-text);
+  transition: background 0.3s;
+}
+
+.btn-link:hover {
+  background-color: var(--color1);
+}
+
+/* Formulario Centrado */
+.register-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.register-card {
+  background-color: var(--color2);
+  width: 100%;
+  max-width: 600px;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.register-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.alert {
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.alert-danger {
+  background-color: #F8D7DA;
+  color: #721C24;
+  border: 1px solid #F5C6CB;
+}
+
+.alert-success {
+  background-color: #D4EDDA;
+  color: #155724;
+  border: 1px solid #C3E6CB;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group.full-width {
+  grid-column: span 2;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-group i {
+  position: absolute;
+  left: 12px;
+  color: #666;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px 12px 10px 38px;
+  border: 1px solid #CCC;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+  background-color: var(--color1);
+  color: var(--color-text);
+}
+
+select.form-control {
+  appearance: none;
+  cursor: pointer;
+}
+
+.form-control:focus {
+  border-color: var(--color-btn);
+  box-shadow: 0 0 0 2px rgba(140, 78, 43, 0.2);
+}
+
+/* Preview de Avatar */
+.avatar-preview-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 5px;
+}
+
+.avatar-preview {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-btn);
+  background-color: #FFF;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--color-btn);
+  color: var(--color-white);
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 10px;
+}
+
+.btn-submit:hover {
+  background-color: var(--color-btn-hover);
+}
+
+.register-footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.register-footer a {
+  color: var(--color-btn-hover);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.register-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Mensajes de error cliente JS */
+.js-error {
+  color: #8B0000;
+  font-size: 0.8rem;
+  margin-top: 4px;
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group.full-width {
+    grid-column: span 1;
+  }
+}
+
+/* Footer */
+footer {
+  background-color: var(--color2);
+  text-align: center;
+  padding: 15px;
+  margin-top: auto;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
