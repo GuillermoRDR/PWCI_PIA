@@ -1,0 +1,211 @@
+:root {
+  --color1: #ffffff;
+  --color2: #C1E8E8;
+  --color-text: #1A5037;
+  --color-white: #FFFFFF;
+  --color-btn: #1B6B60;
+  --color-btn-hover: #D9A05B;
+  --color-error: #D9534F;
+  --color-success: #5CB85C;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--color1);
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Navbar Header */
+header {
+  background-color: var(--color2);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-text);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-link {
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 5px;
+  border: 1px solid var(--color-text);
+  transition: background 0.3s;
+}
+
+.btn-link:hover {
+  background-color: var(--color1);
+}
+
+/* Layout Principal */
+.container {
+  max-width: 80%;
+  margin: 30px auto;
+  padding: 0 20px;
+  width: 100%;
+  flex: 1;
+}
+
+.page-title {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-card {
+  background-color: var(--color2);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  margin-bottom: 30px;
+}
+
+.section-title {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  border-bottom: 2px solid var(--color1);
+  padding-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-weight: bold;
+  font-size: 0.95rem;
+}
+
+.form-control {
+  padding: 10px;
+  border: 1px solid #CCC;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background-color: var(--color1);
+  color: var(--color-text);
+  outline: none;
+}
+
+.form-control:focus {
+  border-color: var(--color-btn);
+}
+
+/* Bloques de Niveles Dinámicos */
+.level-box {
+  background-color: var(--color1);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.level-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.btn-remove-level {
+  background-color: var(--color-danger);
+  color: #FFF;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.btn-add-level {
+  background-color: var(--color-btn);
+  color: var(--color-white);
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 25px;
+  transition: background 0.3s;
+}
+
+.btn-add-level:hover {
+  background-color: var(--color-btn-hover);
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 14px;
+  background-color: var(--color-btn);
+  color: var(--color-white);
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-submit:hover {
+  background-color: var(--color-btn-hover);
+}
+
+.help-text {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+/* Footer */
+footer {
+  background-color: var(--color2);
+  text-align: center;
+  padding: 15px;
+  margin-top: auto;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}

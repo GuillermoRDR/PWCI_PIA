@@ -1,60 +1,58 @@
 <?php
 
-function verificarSesion(){
+function verificarSesion()
+{
+  if (!isset($_SESSION['usuario'])) {
+    header(
+      "Location: /index.php?action=loginPage"
+    );
 
-    if(!isset($_SESSION['usuario'])){
-        header(
-            "Location: /index.php?action=loginPage"
-        );
-
-        exit();
-    }
+    exit();
+  }
 }
 
-function verificarRol($rolesPermitidos){
+function verificarRol($rolesPermitidos)
+{
+  verificarSesion();
+  $rolUsuario =
+    $_SESSION['usuario']['rol'];
 
-    verificarSesion();
-    $rolUsuario =
-        $_SESSION['usuario']['rol'];
+  if (
+    !in_array(
+      $rolUsuario,
+      $rolesPermitidos
+    )
+  ) {
+    header(
+      "Location: /index.php?action=403"
+    );
 
-    if(
-        !in_array(
-            $rolUsuario,
-            $rolesPermitidos
-        )
-    ){
-
-        header(
-            "Location: /index.php?action=403"
-        );
-
-        exit();
-    }
+    exit();
+  }
 }
 
-function requiereRol($rolesPermitidos){
+function requiereRol($rolesPermitidos)
+{
+  verificarSesion();
 
-    verificarSesion();
-
-    if(
-        !in_array(
-            $_SESSION['usuario']['rol'],
-            $rolesPermitidos
-        )
-    ){
-
-        die("Acceso denegado");
-    }
+  if (
+    !in_array(
+      $_SESSION['usuario']['rol'],
+      $rolesPermitidos
+    )
+  ) {
+    die("Acceso denegado");
+  }
 }
 
-function obtenerIdUsuario($db){
+function obtenerIdUsuario($db)
+{
+  $model = new UserModel($db);
 
-    $model = new UserModel($db);
+  $usuario =
+    $model->obtenerUsuarioIdCredencial(
+      $_SESSION['usuario']['id']
+    );
 
-    $usuario =
-        $model->obtenerUsuarioIdCredencial(
-            $_SESSION['usuario']['id']
-        );
-
-    return $usuario['id_usuario'];
+  return $usuario['id_usuario'];
 }
