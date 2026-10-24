@@ -149,7 +149,6 @@ $mensaje = $mensaje ?? null;
   </footer>
 
   <script>
-    // Vista previa inmediata de la foto de perfil subida
     document.getElementById('avatar').addEventListener('change', function(e) {
       const file = e.target.files[0];
       if (file) {
@@ -161,7 +160,6 @@ $mensaje = $mensaje ?? null;
       }
     });
 
-    // Validación del formulario en el cliente
     document.getElementById('registerForm').addEventListener('submit', function(event) {
       let isValid = true;
 
@@ -173,7 +171,6 @@ $mensaje = $mensaje ?? null;
       const password = document.getElementById('password');
       const confirmPassword = document.getElementById('confirm_password');
 
-      // Span de errores
       const errors = {
         nombre: document.getElementById('nombreError'),
         email: document.getElementById('emailError'),
@@ -187,55 +184,46 @@ $mensaje = $mensaje ?? null;
       const jsAlert = document.getElementById('jsAlert');
       const jsAlertMessage = document.getElementById('jsAlertMessage');
 
-      // Ocultar mensajes previos
       Object.values(errors).forEach(el => el.style.display = 'none');
       jsAlert.style.display = 'none';
 
-      // Validar Nombre
       if (!nombre.value.trim()) {
         errors.nombre.style.display = 'block';
         isValid = false;
       }
 
-      // Validar Correo
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!email.value.trim() || !emailRegex.test(email.value)) {
         errors.email.style.display = 'block';
         isValid = false;
       }
 
-      // Validar Género
       if (!genero.value) {
         errors.genero.style.display = 'block';
         isValid = false;
       }
 
-      // Validar Fecha de Nacimiento
       if (!fechaNacimiento.value) {
         errors.fecha.style.display = 'block';
         isValid = false;
       }
 
-      // Validar Avatar
       if (avatar.files.length === 0) {
         errors.avatar.style.display = 'block';
         isValid = false;
       }
 
-      // Validar Contraseña (Mínimo 8 caracteres, 1 mayúscula, 1 número y 1 carácter especial)
       const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?¡¿]).{8,}$/;
       if (!passwordRegex.test(password.value)) {
         errors.password.style.display = 'block';
         isValid = false;
       }
 
-      // Validar Confirmación de Contraseña
       if (password.value !== confirmPassword.value) {
         errors.confirmPassword.style.display = 'block';
         isValid = false;
       }
 
-      // Si hay errores, prevenir envío
       if (!isValid) {
         event.preventDefault();
         jsAlertMessage.textContent = 'Por favor, completa correctamente todos los campos obligatorios.';
