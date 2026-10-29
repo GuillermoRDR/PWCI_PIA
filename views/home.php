@@ -1,7 +1,6 @@
 <?php require base_path('views/partials/head.php') ?>
 <?php require base_path('views/partials/nav.php') ?>
 
-
 <div class="main-container">
 
   <aside class="sidebar">
@@ -111,4 +110,4 @@
 
   <?php require base_path('views/partials/footer.php'); ?>
 
-  <script src="assets/js/main.js"></script>
+  <script src="/js/main.js"></script>

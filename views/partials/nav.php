@@ -1,42 +1,52 @@
-  <header>
-    <a href="index.php" class="logo">
-      <i class="fa-solid fa-graduation-cap"></i> Kdemy
-    </a>
+<header>
+  <a href="<?= url('/') ?>" class="logo">
+    <i class="fa-solid fa-graduation-cap"></i>
+    Kdemy
+  </a>
 
-    <form href="index.php?action=resultado_busqueda" method="GET" class="search-bar">
-      <input type="hidden" name="action" value="search">
-      <input type="text" name="query" placeholder="Buscar curso activo..." required>
-      <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-    </form>
+  <nav class="nav-links">
 
-    <nav class="nav-links">
-      <?php if (isset($_SESSION['user_id'])): ?>
+    <?php if (!empty($_SESSION['user_id'])): ?>
 
-      <?php else: ?>
-        <a href="index.php?action=dashboard_admin" class="btn btn-secondary">
-          <i class="fa-solid fa-chart-line"></i> Panel de Control
+      <span>
+        <?= htmlspecialchars(
+          $_SESSION['nombre'] ?? 'Usuario',
+          ENT_QUOTES,
+          'UTF-8'
+        ) ?>
+      </span>
+
+      <?php if ($_SESSION['rol'] === 'administrador'): ?>
+        <a href="<?= url('/admin') ?>" class="btn btn-secondary">
+          Panel administrador
         </a>
-        <a href="index.php?action=panel_control" class="btn btn-secondary">
-          <i class="fa-solid fa-chart-line"></i> Dashboard
+      <?php elseif ($_SESSION['rol'] === 'profesor'): ?>
+        <a href="<?= url('/profesor') ?>" class="btn btn-secondary">
+          Panel profesor
         </a>
-        <a href="index.php?action=reportes" class="btn btn-secondary">
-          <i class="fa-solid fa-chart-line"></i> Reportes
-        </a>
-        <a href="index.php?action=mis_cursos" class="btn btn-secondary">
-          <i class="fa-solid fa-book-open"></i> Mis Cursos
-        </a>
-        <a href="index.php?action=logearse" class="btn btn-primary">
-          <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
-        </a>
-        <a href="index.php?action=mi_perfil" class="btn btn-secondary">
-          <i class="fa-solid fa-user"></i> Mi Perfil
-        </a>
-        <a href="<?= url('/login') ?>" class="btn btn-primary">
-          <i class="fa-solid fa-right-to-bracket "></i> Iniciar Sesión
-        </a>
-        <a href="<?= url('/register') ?>" class="btn btn-primary">
-          <i class="fa-solid fa-user-plus"></i> Registrarse
+      <?php elseif ($_SESSION['rol'] === 'alumno'): ?>
+        <a href="<?= url('/alumno') ?>" class="btn btn-secondary">
+          Mis cursos
         </a>
       <?php endif; ?>
-    </nav>
-  </header>
+
+      <form action="<?= url('/logout') ?>" method="POST">
+        <button type="submit" class="btn btn-primary">
+          Cerrar sesión
+        </button>
+      </form>
+
+    <?php else: ?>
+
+      <a href="<?= url('/login') ?>" class="btn btn-primary">
+        Iniciar sesión
+      </a>
+
+      <a href="<?= url('/register') ?>" class="btn btn-primary">
+        Registrarse
+      </a>
+
+    <?php endif; ?>
+
+  </nav>
+</header>
