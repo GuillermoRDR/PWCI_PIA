@@ -54,6 +54,17 @@ class Router
 
   public function route($uri, $method)
   {
+    if (
+      $method === 'GET' &&
+      preg_match(
+        '#^/api/v1/cursos/[1-9][0-9]*/comentarios/?$#',
+        $uri
+      )
+    ) {
+      require base_path('controllers/api/comentarios.php');
+      return;
+    }
+
     //dd($uri, $method, $this->routes);
     foreach ($this->routes as $route) {
       if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
