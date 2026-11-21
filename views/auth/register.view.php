@@ -16,6 +16,7 @@ function oldValue(string $key): string
   <title>Registro de Usuario - Portal de Cursos</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="<?= url('/css/registro.css') ?>">
+  <link rel="stylesheet" href="<?= url('/css/footer.css') ?>">
 </head>
 
 <body>
@@ -56,21 +57,14 @@ function oldValue(string $key): string
         </div>
       <?php endif; ?>
 
-      <div
-        id="jsAlert"
-        class="alert alert-danger"
-        style="display: none;"
-        role="alert"
-        aria-live="polite">
+      <div id="jsAlert" class="alert alert-danger" style="display: none;" role="alert" aria-live="polite">
         <i class="fa-solid fa-triangle-exclamation"></i>
         <span id="jsAlertMessage"></span>
       </div>
 
       <form id="registerForm" action="<?= url('/register') ?>" method="POST" enctype="multipart/form-data" novalidate>
-        <input
-          type="hidden"
-          name="csrf_token"
-          value="<?= htmlspecialchars($_SESSION['csrf_token'] ?? '',  ENT_QUOTES,  'UTF-8') ?>">
+        <input type="hidden" name="csrf_token"
+          value="<?= htmlspecialchars($_SESSION['csrf_token'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
 
         <div class="form-grid">
 
@@ -82,9 +76,9 @@ function oldValue(string $key): string
             <div class="input-group">
               <i class="fa-solid fa-user"></i>
 
-              <input type="text" id="nombre_completo" name="nombre_completo"
-                class="form-control" placeholder="Ej. Juan Pérez González" maxlength="150"
-                autocomplete="name" value="<?= oldValue('nombre_completo') ?>" required>
+              <input type="text" id="nombre_completo" name="nombre_completo" class="form-control"
+                placeholder="Ej. Juan Pérez González" maxlength="150" autocomplete="name"
+                value="<?= oldValue('nombre_completo') ?>" required>
             </div>
 
             <span id="nombreError" class="js-error">
@@ -100,9 +94,9 @@ function oldValue(string $key): string
             <div class="input-group">
               <i class="fa-solid fa-at"></i>
 
-              <input type="text" id="nombre_usuario" name="nombre_usuario"
-                class="form-control" placeholder="Ej. juan_perez" minlength="3" maxlength="50"
-                pattern="[a-zA-Z0-9_]{3,50}" autocomplete="username" value="<?= oldValue('nombre_usuario') ?>" required>
+              <input type="text" id="nombre_usuario" name="nombre_usuario" class="form-control"
+                placeholder="Ej. juan_perez" minlength="3" maxlength="50" pattern="[a-zA-Z0-9_]{3,50}"
+                autocomplete="username" value="<?= oldValue('nombre_usuario') ?>" required>
             </div>
 
             <span id="usuarioError" class="js-error">
@@ -119,8 +113,8 @@ function oldValue(string $key): string
             <div class="input-group">
               <i class="fa-solid fa-envelope"></i>
 
-              <input type="email" id="correo" name="correo" class="form-control"
-                placeholder="ejemplo@correo.com" maxlength="254" autocomplete="email" value="<?= oldValue('correo') ?>" required>
+              <input type="email" id="correo" name="correo" class="form-control" placeholder="ejemplo@correo.com"
+                maxlength="254" autocomplete="email" value="<?= oldValue('correo') ?>" required>
             </div>
 
             <span id="emailError" class="js-error">
@@ -136,8 +130,7 @@ function oldValue(string $key): string
             <div class="input-group">
               <i class="fa-solid fa-venus-mars"></i>
 
-              <select
-                id="genero" name="genero" class="form-control" required>
+              <select id="genero" name="genero" class="form-control" required>
                 <option value="">
                   Selecciona...
                 </option>
@@ -151,9 +144,7 @@ function oldValue(string $key): string
                   ] as $genero
                 ): ?>
 
-                  <option
-                    value="<?= htmlspecialchars($genero) ?>"
-                    <?= ($old['genero'] ?? '') === $genero
+                  <option value="<?= htmlspecialchars($genero) ?>" <?= ($old['genero'] ?? '') === $genero
                       ? 'selected'
                       : '' ?>>
                     <?= htmlspecialchars($genero) ?>
@@ -176,14 +167,8 @@ function oldValue(string $key): string
             <div class="input-group">
               <i class="fa-solid fa-calendar-days"></i>
 
-              <input
-                type="date"
-                id="fecha_nacimiento"
-                name="fecha_nacimiento"
-                class="form-control"
-                max="<?= date('Y-m-d') ?>"
-                value="<?= oldValue('fecha_nacimiento') ?>"
-                required>
+              <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" class="form-control"
+                max="<?= date('Y-m-d') ?>" value="<?= oldValue('fecha_nacimiento') ?>" required>
             </div>
 
             <span id="fechaError" class="js-error">
@@ -199,28 +184,20 @@ function oldValue(string $key): string
             <div class="input-group">
               <i class="fa-solid fa-user-gear"></i>
 
-              <select
-                id="rol"
-                name="rol"
-                class="form-control"
-                required>
+              <select id="rol" name="rol" class="form-control" required>
                 <option value="">
                   Selecciona un rol
                 </option>
 
-                <option
-                  value="alumno"
-                  <?= ($old['rol'] ?? '') === 'alumno'
-                    ? 'selected'
-                    : '' ?>>
+                <option value="alumno" <?= ($old['rol'] ?? '') === 'alumno'
+                  ? 'selected'
+                  : '' ?>>
                   Estudiante
                 </option>
 
-                <option
-                  value="profesor"
-                  <?= ($old['rol'] ?? '') === 'profesor'
-                    ? 'selected'
-                    : '' ?>>
+                <option value="profesor" <?= ($old['rol'] ?? '') === 'profesor'
+                  ? 'selected'
+                  : '' ?>>
                   Profesor / Instructor
                 </option>
               </select>
@@ -238,24 +215,12 @@ function oldValue(string $key): string
 
             <div class="avatar-preview-container">
               <div class="avatar-placeholder">
-                <img
-                  id="previewImg"
-                  class="avatar-preview"
-                  alt="Vista previa del avatar"
-                  style="display: none;">
+                <img id="previewImg" class="avatar-preview" alt="Vista previa del avatar" style="display: none;">
 
-                <i
-                  id="avatarPlaceholder"
-                  class="fa-solid fa-circle-user"
-                  aria-hidden="true"></i>
+                <i id="avatarPlaceholder" class="fa-solid fa-circle-user" aria-hidden="true"></i>
               </div>
 
-              <input
-                type="file"
-                id="avatar"
-                name="avatar"
-                accept="image/jpeg,image/png,image/webp"
-                class="form-control"
+              <input type="file" id="avatar" name="avatar" accept="image/jpeg,image/png,image/webp" class="form-control"
                 required>
             </div>
 
@@ -277,15 +242,8 @@ function oldValue(string $key): string
             <div class="input-group">
               <i class="fa-solid fa-lock"></i>
 
-              <input
-                type="password"
-                id="password"
-                name="password"
-                class="form-control"
-                placeholder="••••••••"
-                minlength="8"
-                autocomplete="new-password"
-                required>
+              <input type="password" id="password" name="password" class="form-control" placeholder="••••••••"
+                minlength="8" autocomplete="new-password" required>
             </div>
 
             <span id="passwordError" class="js-error">
@@ -302,19 +260,11 @@ function oldValue(string $key): string
             <div class="input-group">
               <i class="fa-solid fa-shield-halved"></i>
 
-              <input
-                type="password"
-                id="confirmar_password"
-                name="confirmar_password"
-                class="form-control"
-                placeholder="••••••••"
-                autocomplete="new-password"
-                required>
+              <input type="password" id="confirmar_password" name="confirmar_password" class="form-control"
+                placeholder="••••••••" autocomplete="new-password" required>
             </div>
 
-            <span
-              id="confirmPasswordError"
-              class="js-error">
+            <span id="confirmPasswordError" class="js-error">
               Las contraseñas no coinciden.
             </span>
           </div>
@@ -339,6 +289,21 @@ function oldValue(string $key): string
 
     </section>
   </main>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+  <script src="<?= url('/js/notifications.js') ?>" defer></script>
+  <?php if (!empty($errors)): ?>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        if (window.KdemyNotifications) {
+          window.KdemyNotifications.toast({
+            icon: 'error',
+            title: 'Revisa el formulario',
+            text: 'Hay <?= count($errors) ?> aspecto(s) que debes corregir.',
+            timer: 4500
+          });
+        }
+      });
+    </script>
+  <?php endif; ?>
+  <?php require base_path('views/partials/footer.php'); ?>
 </body>
-
-<?php require base_path('views/partials/footer.php'); ?>

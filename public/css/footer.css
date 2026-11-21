@@ -1,0 +1,26 @@
+body>footer.site-footer {
+  width: 100%;
+  min-height: 52px;
+  margin-top: auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #c1e8e8;
+  color: #1a5037;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  font: 400 1rem/1.4 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+body>footer.site-footer p {
+  margin: 0;
+}
+
+@media print {
+  body>footer.site-footer {
+    display: none !important;
+  }
+}

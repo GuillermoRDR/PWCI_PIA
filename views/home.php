@@ -1,113 +1,31 @@
-<?php require base_path('views/partials/head.php') ?>
-<?php require base_path('views/partials/nav.php') ?>
-
+<?php require base_path('views/partials/legacy.php');
+legacyStart('Aprende en Kdemy', 'styles'); ?>
 <div class="main-container">
-
   <aside class="sidebar">
-    <h3><i class="fa-solid fa-layer-group"></i> Categorías</h3>
-    <ul class="category-list">
-      <?php if (!empty($categorias)): ?>
-        <?php foreach ($categorias as $cat): ?>
-          <li>
-            <a href="index.php?action=category&id=<?= htmlspecialchars($cat['id']) ?>">
-              <i class="fa-solid fa-folder"></i> <?= htmlspecialchars($cat['nombre']) ?>
-            </a>
-          </li>
-        <?php endforeach; ?>
-      <?php else: ?>
-        <li><a href="#"><i class="fa-solid fa-code"></i> IT & Software</a></li>
-        <li><a href="#"><i class="fa-solid fa-bullhorn"></i> Marketing</a></li>
-        <li><a href="#"><i class="fa-solid fa-paint-brush"></i> Diseño</a></li>
-      <?php endif; ?>
+    <h3>Categorías</h3>
+    <ul class="category-list"><?php foreach ($categorias as $cat): ?>
+        <li><a href="<?= e(url('/buscar?categoria_id=' . (int) $cat['id'])) ?>"><?= e($cat['nombre']) ?></a></li>
+      <?php endforeach; ?>
     </ul>
   </aside>
-
   <main class="content">
-
-    <section>
-      <h2 class="section-title"><i class="fa-solid fa-clock"></i> Cursos Más Recientes</h2>
-      <div class="cards-grid">
-        <?php if (!empty($cursosRecientes)): ?>
-          <?php foreach ($cursosRecientes as $curso): ?>
-            <div class="card">
-              <img src="https://placehold.co/300x150/ffffff/D9A05B" alt="Imagen del curso">
+    <form class="search-bar" action="<?= e(url('/buscar')) ?>" method="get"><input name="q" aria-label="Buscar"
+        placeholder="Cursos, temas o profesores"><button>Buscar</button></form>
+    <?php foreach (['Cursos recientes' => $cursosRecientes, 'Mejor calificados' => $cursosMejorCalificados, 'Más vendidos' => $cursosMasVendidos] as $titulo => $lista): ?>
+      <section>
+        <h2 class="section-title"><?= e($titulo) ?></h2>
+        <div class="cards-grid"><?php foreach ($lista as $curso): ?>
+            <article class="card"><img src="<?= e(foto($curso['imagen'])) ?>" alt="Portada del curso">
               <div class="card-body">
-                <h4 class="card-title"><?= htmlspecialchars($curso['titulo']) ?></h4>
-                <a href="index.php?action=detalle_curso" class="btn btn-primary">Ver detalle</a>
+                <h3 class="card-title"><?= e($curso['titulo']) ?></h3>
+                <p><?= e(mb_strimwidth($curso['descripcion'], 0, 120, '…')) ?></p>
+                <p>
+                  <?= $curso['modalidad_precio'] === 'por_nivel' ? 'Precio por nivel' : ('$' . number_format((float) $curso['precio'], 2) . ' MXN') ?>
+                </p><a class="btn btn-primary" href="<?= e(url('/curso?id=' . (int) $curso['id'])) ?>">Ver curso</a>
               </div>
-            </div>
-          <?php endforeach; ?>
-        <?php else: ?>
-          <div class="card">
-            <img src="https://placehold.co/300x150/ffffff/D9A05B" alt="Curso Demo">
-            <div class="card-body">
-              <h4 class="card-title">Desarrollo Web Full Stack</h4>
-              <p class="card-info">Aprende PHP, MySQL y HTML5 desde cero.</p>
-              <a href="index.php?action=detalle_curso" class="btn btn-primary">Ver detalle</a>
-            </div>
-          </div>
-        <?php endif; ?>
-      </div>
-    </section>
-
-    <section>
-      <h2 class="section-title"><i class="fa-solid fa-star"></i> Mejor Calificados</h2>
-      <div class="cards-grid">
-        <?php if (!empty($cursosMejorCalificados)): ?>
-          <?php foreach ($cursosMejorCalificados as $curso): ?>
-            <div class="card">
-              <img src="https://placehold.co/300x150/ffffff/D9A05B" alt="Imagen del curso">
-              <div class="card-body">
-                <h4 class="card-title"><?= htmlspecialchars($curso['titulo']) ?></h4>
-                <div class="card-rating">
-                  <i class="fa-solid fa-star"></i> 4.9 / 5.0
-                </div>
-                <a href="index.php?action=detalle_curso" class="btn btn-primary">Ver detalle</a>
-              </div>
-            </div>
-          <?php endforeach; ?>
-        <?php else: ?>
-          <div class="card">
-            <img src="https://placehold.co/300x150/ffffff/D9A05B" alt="Curso Demo">
-            <div class="card-body">
-              <h4 class="card-title">Diseño de Interfaces UI/UX</h4>
-              <div class="card-rating">
-                <i class="fa-solid fa-star"></i> 4.8 / 5.0
-              </div>
-              <a href="index.php?action=detalle_curso" class="btn btn-primary">Ver detalle</a>
-            </div>
-          </div>
-        <?php endif; ?>
-      </div>
-    </section>
-
-    <section>
-      <h2 class="section-title"><i class="fa-solid fa-fire"></i> Más Vendidos</h2>
-      <div class="cards-grid">
-        <?php if (!empty($cursosMasVendidos)): ?>
-          <?php foreach ($cursosMasVendidos as $curso): ?>
-            <div class="card">
-              <img src="https://placehold.co/300x150/ffffff/D9A05B" alt="Imagen del curso">
-              <div class="card-body">
-                <h4 class="card-title"><?= htmlspecialchars($curso['titulo']) ?></h4>
-                <a href="index.php?action=detalle_curso" class="btn btn-primary">Ver detalle</a>
-              </div>
-            </div>
-          <?php endforeach; ?>
-        <?php else: ?>
-          <div class="card">
-            <img src="https://placehold.co/300x150/ffffff/D9A05B" alt="Curso Demo">
-            <div class="card-body">
-              <h4 class="card-title">Estrategias de Marketing Digital</h4>
-              <a href="index.php?action=detalle_curso" class="btn btn-primary">Ver detalle</a>
-            </div>
-          </div>
-        <?php endif; ?>
-      </div>
-    </section>
-
+            </article><?php endforeach; ?>
+        </div><?php if (!$lista): ?>
+          <p>Aún no hay cursos.</p><?php endif; ?>
+      </section><?php endforeach; ?>
   </main>
-
-  <?php require base_path('views/partials/footer.php'); ?>
-
-  <script src="/js/main.js"></script>
+</div><?php legacyEnd(); ?>

@@ -4,6 +4,7 @@
   <title>Iniciar Sesión - Portal de Cursos</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="<?= url('/css/inicio_sesion.css') ?>">
+  <link rel="stylesheet" href="<?= url('/css/footer.css') ?>">
 </head>
 
 
@@ -47,14 +48,8 @@
           <div class="input-group">
             <i class="fa-solid fa-envelope"></i>
 
-            <input
-              type="text"
-              id="email"
-              name="identificador"
-              class="form-control"
-              placeholder="Correo o usuario"
-              autocomplete="username"
-              required>
+            <input type="text" id="email" name="identificador" class="form-control" placeholder="Correo o usuario"
+              autocomplete="username" required>
           </div>
 
           <span id="emailError" class="js-error">
@@ -68,7 +63,8 @@
             <i class="fa-solid fa-lock"></i>
             <input type="password" id="password" name="password" class="form-control" placeholder="••••••••" required>
           </div>
-          <span id="passwordError" class="js-error">La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un carácter especial.</span>
+          <span id="passwordError" class="js-error">La contraseña debe tener al menos 8 caracteres, una mayúscula, un
+            número y un carácter especial.</span>
         </div>
 
         <button type="submit" class="btn-submit">Ingresar</button>
@@ -79,6 +75,22 @@
       </div>
     </div>
   </div>
-<script src="<?= url('/js/login.js') ?>" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+  <script src="<?= url('/js/notifications.js') ?>" defer></script>
+  <?php if (!empty($registroExitoso)): ?>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        if (window.KdemyNotifications) {
+          window.KdemyNotifications.toast({
+            icon: 'success',
+            title: 'Cuenta creada',
+            text: 'Tu registro se completó. Ya puedes iniciar sesión.',
+            timer: 4000
+          });
+        }
+      });
+    </script>
+  <?php endif; ?>
+  <script src="<?= url('/js/login.js') ?>" defer></script>
+  <?php require base_path('views/partials/footer.php'); ?>
 </body>
-
