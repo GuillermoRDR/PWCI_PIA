@@ -1,4 +1,3 @@
-
 <?php
 
 use Models\User;
@@ -10,7 +9,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     exit;
   }
 
-  view('auth/login.view.php');
+  $registroExitoso = !empty($_SESSION['registro_exitoso']);
+  unset($_SESSION['registro_exitoso']);
+
+  view('inicio_sesion.php', [
+    'registroExitoso' => $registroExitoso,
+  ]);
   return;
 }
 

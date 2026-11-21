@@ -2,30 +2,30 @@ const inputBusqueda = document.getElementById("buscarAsegurado");
 
 inputBusqueda.addEventListener("keyup", buscarAsegurado);
 
-async function buscarAsegurado(){
+async function buscarAsegurado() {
 
     const texto = inputBusqueda.value.trim();
 
-    if(texto.length < 2){
+    if (texto.length < 2) {
         document.getElementById("resultadosBusqueda").innerHTML = "";
         return;
     }
 
-    try{
-        const response = await 
-        fetch(`/index.php?action=buscarAsegurado&texto=${encodeURIComponent(texto)}`);
+    try {
+        const response = await
+            fetch(`/index.php?action=buscarAsegurado&texto=${encodeURIComponent(texto)}`);
         const data = await response.json();
         mostrarResultados(data);
-    }catch(error){
+    } catch (error) {
         console.error(error);
     }
 }
 
-function mostrarResultados(data){
+function mostrarResultados(data) {
 
     let html = "";
 
-    if(data.length === 0){
+    if (data.length === 0) {
 
         html = `
             <div class="resultado-item">
@@ -51,7 +51,7 @@ function mostrarResultados(data){
     document.getElementById("resultadosBusqueda").innerHTML = html;
 }
 
-function seleccionarAsegurado(item){
+function seleccionarAsegurado(item) {
     // IDs ocultos
     document.getElementById("idUnidad").value =
         item.id_unidad;
@@ -109,31 +109,31 @@ function seleccionarAsegurado(item){
     document.getElementById("buscarAsegurado").value =
         item.asegurado;
 
-    document.getElementById("imgAsegurado").src 
-        =`/index.php?action=obtenerFotoUsuario&id=${item.id_usuario}`;
+    document.getElementById("imgAsegurado").src
+        = `/index.php?action=obtenerFotoUsuario&id=${item.id_usuario}`;
 }
 
 // Detectar si hay un mensaje de error en la URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const errorMsg = urlParams.get('error');
+const urlParams = new URLSearchParams(window.location.search);
+const errorMsg = urlParams.get('error');
 
-    if (errorMsg) {
-        Swal.fire({
-            icon: 'error',
-            title: '¡Oops!',
-            text: errorMsg,
-            confirmButtonText: 'Entendido'
-        });
-    }
+if (errorMsg) {
+    Swal.fire({
+        icon: 'error',
+        title: '¡Oops!',
+        text: errorMsg,
+        confirmButtonText: 'Entendido'
+    });
+}
 
-    // También puedes aprovechar para mostrar el éxito
-    if (urlParams.get('registroSiniestroSuccess')) {
-        Swal.fire({
-            icon: 'success',
-            title: '¡Logrado!',
-            text: 'El siniestro se registró correctamente.',
-        });
-    }
+// También puedes aprovechar para mostrar el éxito
+if (urlParams.get('registroSiniestroSuccess')) {
+    Swal.fire({
+        icon: 'success',
+        title: '¡Logrado!',
+        text: 'El siniestro se registró correctamente.',
+    });
+}
 
 const inputFotos =
     document.querySelector(
@@ -160,19 +160,19 @@ const previewVideos =
 
 inputFotos.addEventListener(
     'change',
-    function(){
+    function () {
 
         previewFotos.innerHTML = '';
 
         const archivos =
             this.files;
 
-        for(const archivo of archivos){
+        for (const archivo of archivos) {
 
             const reader =
                 new FileReader();
 
-            reader.onload = function(e){
+            reader.onload = function (e) {
 
                 const img =
                     document.createElement(
@@ -203,14 +203,14 @@ inputFotos.addEventListener(
 
 inputVideos.addEventListener(
     'change',
-    function(){
+    function () {
 
         previewVideos.innerHTML = '';
 
         const archivos =
             this.files;
 
-        for(const archivo of archivos){
+        for (const archivo of archivos) {
 
             const card =
                 document.createElement(
@@ -235,9 +235,9 @@ inputVideos.addEventListener(
 
                     <div class="video-size">
                         ${(
-                            archivo.size
-                            / 1024 / 1024
-                        ).toFixed(2)} MB
+                    archivo.size
+                    / 1024 / 1024
+                ).toFixed(2)} MB
                     </div>
 
                 </div>

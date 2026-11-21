@@ -7,7 +7,8 @@ class Middleware
     'auth' => Auth::class,
     'admin' => Auth::class,
     'profesor' => Auth::class,
-    'alumno' => Auth::class
+    'alumno' => Auth::class,
+    'cors' => Cors::class
   ];
 
   public function resolve($name)
@@ -18,6 +19,11 @@ class Middleware
 
     if (!isset(self::MAP[$name])) {
       throw new \RuntimeException('Middleware no registrado.');
+    }
+
+    if ($name === 'cors') {
+      (new Cors())->handle();
+      return;
     }
 
     $rol = match ($name) {

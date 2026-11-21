@@ -1,3 +1,3 @@
-  <footer>
-    <p>&copy; <?= date('Y') ?> kdemy. Todos los derechos reservados.</p>
-  </footer>
+<footer class="site-footer">
+  <p>&copy; <?= date('Y') ?> Kdemy</p>
+</footer>

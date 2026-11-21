@@ -1,0 +1,144 @@
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap
+}
+
+.nav-links form {
+  margin: 0
+}
+
+.nav-links button {
+  background: transparent;
+  cursor: pointer;
+  font: inherit
+}
+
+.container {
+  width: min(1200px, 94%);
+  margin: 2rem auto;
+  flex: 1
+}
+
+.filter-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 1rem;
+  margin: 1rem 0
+}
+
+.filter-form label {
+  display: grid;
+  gap: .4rem;
+  min-width: 155px;
+  flex: 1
+}
+
+.form-control {
+  max-width: 100%;
+  padding: .65rem;
+  border: 1px solid #9bc7c1;
+  border-radius: 6px
+}
+
+.card-section,
+.admin-card,
+.filter-card,
+.card-table {
+  padding: 1.2rem;
+  margin: 1rem 0;
+  border: 1px solid #c1e8e8;
+  border-radius: 10px;
+  background: #fff
+}
+
+.table-responsive {
+  overflow-x: auto
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse
+}
+
+th,
+td {
+  text-align: left;
+  padding: .8rem;
+  border-bottom: 1px solid #c1e8e8
+}
+
+.course-card>img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover
+}
+
+.course-card-body {
+  padding: 1rem
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem
+}
+
+.btn-primary,
+.btn-buy,
+.btn-filter,
+.btn-submit,
+.btn-sm,
+.btn-print,
+.btn-action,
+.btn-cert {
+  display: inline-block;
+  background: #1b6b60;
+  color: #fff;
+  border: 0;
+  border-radius: 6px;
+  padding: .6rem .9rem;
+  text-decoration: none;
+  cursor: pointer
+}
+
+.course-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .7rem;
+  margin: .8rem 0
+}
+
+.level-card form {
+  margin: .7rem 0
+}
+
+.level-card select {
+  margin: .4rem;
+  padding: .4rem
+}
+
+.course-card,
+.card {
+  overflow: hidden
+}
+
+.course-card-body p {
+  margin: .6rem 0
+}
+
+@media(max-width:650px) {
+  .container {
+    width: 94%
+  }
+
+  .nav-links {
+    justify-content: flex-start
+  }
+
+  .course-layout {
+    display: block
+  }
+}

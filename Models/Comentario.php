@@ -19,14 +19,14 @@ class Comentario
       SELECT
         c.comentario_id,
         u.nombre_completo AS alumno,
-        c.calificacion,
-        c.comentario,
+        u.foto_url AS avatar,
+        CASE WHEN c.estado = 'visible' THEN c.calificacion ELSE NULL END AS calificacion,
+        CASE WHEN c.estado = 'visible' THEN c.comentario ELSE 'Este comentario fue eliminado.' END AS comentario,
         c.creado_en
       FROM comentarios c
       INNER JOIN usuarios u
         ON u.usuario_id = c.alumno_id
       WHERE c.curso_id = :curso_id
-        AND c.estado = 'visible'
       ORDER BY c.creado_en DESC");
 
     $stmt->execute(['curso_id' => $cursoId]);
@@ -53,6 +53,13 @@ class Comentario
       WHERE curso_id = :curso_id AND estado = 'activo' LIMIT 1");
     $stmt->execute(['curso_id' => $cursoId]);
 
-    return (bool)$stmt->fetchColumn();
+    return (bool) $stmt->fetchColumn();
+  }
+
+  public function existeDelAlumno(int $cursoId, int $alumnoId): bool
+  {
+    $stmt = $this->db->connection->prepare('SELECT 1 FROM comentarios WHERE curso_id=? AND alumno_id=?');
+    $stmt->execute([$cursoId, $alumnoId]);
+    return (bool) $stmt->fetchColumn();
   }
 }

@@ -63,6 +63,36 @@ class FirebaseStorage
     return $nombre;
   }
 
+  public function uploadCourseImage(string $temporaryPath, string $extension, string $mime): string
+  {
+    $nombre = 'cursos/portadas/' . bin2hex(random_bytes(16)) . '.' . $extension;
+    $archivo = fopen($temporaryPath, 'rb');
+    if ($archivo === false)
+      throw new RuntimeException('Imagen inválida.');
+    try {
+      $this->bucket->upload($archivo, ['name' => $nombre, 'metadata' => ['contentType' => $mime]]);
+    } finally {
+      if (is_resource($archivo))
+        fclose($archivo);
+    }
+    return $nombre;
+  }
+
+  public function uploadResource(string $temporaryPath, string $extension, string $mime): string
+  {
+    $nombre = 'cursos/recursos/' . bin2hex(random_bytes(16)) . '.' . $extension;
+    $archivo = fopen($temporaryPath, 'rb');
+    if ($archivo === false)
+      throw new RuntimeException('No se pudo abrir el recurso.');
+    try {
+      $this->bucket->upload($archivo, ['name' => $nombre, 'metadata' => ['contentType' => $mime]]);
+    } finally {
+      if (is_resource($archivo))
+        fclose($archivo);
+    }
+    return $nombre;
+  }
+
   public function delete(string $nombre): void
   {
     $objeto = $this->bucket->object($nombre);
@@ -70,5 +100,10 @@ class FirebaseStorage
     if ($objeto->exists()) {
       $objeto->delete();
     }
+  }
+
+  public function getUrl(string $nombre): string
+  {
+    return (string) $this->bucket->object($nombre)->signedUrl(new \DateTimeImmutable('+30 minutes'));
   }
 }

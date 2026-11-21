@@ -1,4 +1,3 @@
-
 <?php
 
 use Services\FirebaseStorage;
@@ -101,10 +100,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   if (!$errors) {
     try {
-      if ($userModel->exists(
-        $old['correo'],
-        $old['nombre_usuario']
-      )) {
+      if (
+        $userModel->exists(
+          $old['correo'],
+          $old['nombre_usuario']
+        )
+      ) {
         $errors[] = 'El correo o nombre de usuario ya está registrado.';
       } else {
 
@@ -148,16 +149,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } catch (Throwable $cleanupError) {
               error_log(
                 '[FIREBASE CLEANUP] ' .
-                  $cleanupError->getMessage()
+                $cleanupError->getMessage()
               );
             }
           }
 
           error_log(
             '[REGISTRO] ' . get_class($e) .
-              ' | ' . $e->getMessage() .
-              ' | ' . $e->getFile() .
-              ':' . $e->getLine()
+            ' | ' . $e->getMessage() .
+            ' | ' . $e->getFile() .
+            ':' . $e->getLine()
           );
 
           $errors[] = 'No se pudo completar el registro. '
@@ -180,4 +181,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $_SESSION['csrf_token'] ??= bin2hex(random_bytes(32));
 
-require base_path('views/auth/register.view.php');
+require base_path('views/registro.php');

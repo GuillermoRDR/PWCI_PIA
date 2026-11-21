@@ -1,8 +1,19 @@
 <?php
 
-use Models\Curso;
+use Models\Categoria;
+use Models\CursoCatalogo;
 
-$cursos = (new Curso())->all();
+$cursoModel = new CursoCatalogo();
+$categorias = (new Categoria())->activas();
+$cursosRecientes = $cursoModel->recientes();
+$cursosMejorCalificados = $cursoModel->mejorCalificados();
+$cursosMasVendidos = $cursoModel->masVendidos();
 
-view('home.php', ['cursos' => $cursos, 'user' => $user ?? null]);
+view('home.php', [
+  'categorias' => $categorias,
+  'cursosRecientes' => $cursosRecientes,
+  'cursosMejorCalificados' => $cursosMejorCalificados,
+  'cursosMasVendidos' => $cursosMasVendidos,
+  'user' => $user ?? null,
+]);
 

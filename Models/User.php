@@ -129,7 +129,7 @@ class User
       }
 
       if (!password_verify($password, $usuario['password_hash'])) {
-        $intentos = min(3, (int)$usuario['intentos_fallidos'] + 1);
+        $intentos = min(3, (int) $usuario['intentos_fallidos'] + 1);
 
         if ($intentos >= 3) {
           $update = $pdo->prepare("
@@ -178,7 +178,7 @@ class User
         'ok' => true,
         'codigo' => 200,
         'usuario' => [
-          'id' => (int)$usuario['usuario_id'],
+          'id' => (int) $usuario['usuario_id'],
           'nombre' => $usuario['nombre_completo'],
           'usuario' => $usuario['nombre_usuario'],
           'rol' => $usuario['rol']
